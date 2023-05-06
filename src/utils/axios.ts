@@ -9,7 +9,8 @@ export const getApi = () => {
         baseURL: constants.API_BASE_URL + constants.API.PREFIX,
         headers: {
             // Authorization: `Bearer ${token}`,
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            withCredentials: true
         }
     });
 };

@@ -77,15 +77,6 @@ const Header = () => {
 											</Link>
 										</li>
 										<li className="nav-item">
-											<Link
-												className="nav-link active text-white me-2"
-												aria-current="page"
-												to="/Profile"
-											>
-												{user.email}
-											</Link>
-										</li>
-										<li className="nav-item">
 											<button
 												className="btn btn-warning text-white"
 												onClick={() => {}}
