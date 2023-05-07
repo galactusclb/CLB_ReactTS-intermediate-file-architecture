@@ -1,6 +1,11 @@
 import { NotFound } from "@pages/NotFound"
+import Dashboard from "@pages/admin/dashboard"
 
 const routes = [
+    {
+        path: "/dashboard",
+        component: Dashboard
+    },
     // {
     //     path: "/feedbacks",
     //     component: <FeedbackList />

@@ -7,7 +7,7 @@ interface UserDoc {
     role?: string;
 }
 
-interface AuthState {
+export interface AuthState {
     userDoc?: UserDoc | null;
     refreshToken?: string | null;
     accessToken?: string | null;

@@ -1,12 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { doLogin, doSignup } from "services/auth.service";
-import { authActions } from "store/authSlice";
+import { RootState } from "store";
+import { AuthState, authActions } from "store/authSlice";
 import { handleError } from "utils/errorHandler";
 
 const useAuth = () => {
 	const dispatch = useDispatch();
+
+	const authState = useSelector((state: RootState) => state.auth) as AuthState;
 
 	const signup = async (payload: any) => {
 		const response = await doSignup(payload);
@@ -55,9 +58,14 @@ const useAuth = () => {
 		console.error(response.data);
 	};
 
+	const isLoggedIn = (): boolean => {
+		return !!authState.userDoc;
+	};
+
 	return {
 		login,
 		signup,
+		isLoggedIn,
 	};
 };
 
