@@ -14,7 +14,7 @@ const AdminLayout = () => {
 	const { getRoutes } = useRouteGenerator();
 
 	return !isLoggedIn ? (
-		<Navigate to="/register" state={{ from: location }} replace />
+		<Navigate to="/login" state={{ from: location }} replace />
 	) : (
 		<div className="container-fluid">
 			<Header />

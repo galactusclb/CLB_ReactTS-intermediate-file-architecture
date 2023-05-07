@@ -37,12 +37,13 @@ const useRouteGenerator = () => {
 		const normalizedCurrentPath = currentPath?.endsWith("/")
 			? currentPath
 			: `${currentPath}/`;
+
 		const parentPath = normalizedCurrentPath.substring(
 			0,
 			normalizedCurrentPath.lastIndexOf("/")
 		);
 		const finalPath = `${parentPath}${navigateTo}`;
-		console.log(`finalPath : ${finalPath}`);
+
 		return finalPath;
 	};
 
