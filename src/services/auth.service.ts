@@ -7,7 +7,7 @@ export const doSignup = async (payload: {
     userName: string,
     password: string,
 }) => {
-    return await getApi().post("/auth/signup", payload)
+    return await getApi().post("/auth/signups", payload)
         .then((res: AxiosResponse) => {
             return buildResponse(true, res.data)
         })
