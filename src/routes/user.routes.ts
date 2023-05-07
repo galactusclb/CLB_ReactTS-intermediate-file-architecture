@@ -1,15 +1,20 @@
+import Login from "@pages/auth/Login"
 import Register from "@pages/auth/Register"
 import { NotFound } from "pages/NotFound"
 
 const routes = [
     {
         path: "/",
-        redirectTo: "/register"
+        redirectTo: "/login"
     },
-    // // {
-    // //     path: "*",
-    // //     redirectTo: "/notices"
-    // // },
+    // {
+    //     path: "*",
+    //     redirectTo: "/notices"
+    // },
+    {
+        path: "/login",
+        component: Login
+    },
     {
         path: "/register",
         component: Register

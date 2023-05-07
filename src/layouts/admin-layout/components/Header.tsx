@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "shared/hooks/components/auth/useAuth";
 
 const Header = () => {
-
-	const user = {}
+	const { isLoggedIn, userDetails } = useAuth();
 
 	return (
 		<header>
@@ -29,19 +29,25 @@ const Header = () => {
 					>
 						<ul className="navbar-nav me-auto mb-2 mb-lg-0 text-white">
 							<li className="nav-item">
-								<Link className="nav-link active text-white" to="/admin/feedbacks">
+								<Link
+									className="nav-link active text-white"
+									to="/admin/feedbacks"
+								>
 									FEEDBACKS
 								</Link>
 							</li>
 							<li className="nav-item">
-								<Link className="nav-link active text-white" to="/admin/notices">
+								<Link
+									className="nav-link active text-white"
+									to="/admin/notices"
+								>
 									NOTICES
 								</Link>
 							</li>
 						</ul>
 						<div className="d-flex">
 							<ul className="navbar-nav me-auto mb-2 mb-lg-0 text-white">
-								{user && (
+								{isLoggedIn && (
 									<>
 										<li className="nav-item">
 											<Link
@@ -49,13 +55,13 @@ const Header = () => {
 												aria-current="page"
 												to="/Profile"
 											>
-												{user.email}
+												{userDetails?.userName}
 											</Link>
 										</li>
 										<li className="nav-item">
 											<button
 												className="btn btn-warning text-white"
-												onClick={() => { }}
+												onClick={() => {}}
 											>
 												Logout
 											</button>
@@ -63,7 +69,7 @@ const Header = () => {
 									</>
 								)}
 
-								{!user && (
+								{!isLoggedIn && (
 									<>
 										{" "}
 										<li className="nav-item">

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "shared/hooks/components/auth/useAuth";
 
 const Header = () => {
-	const user = {};
+	const { isLoggedIn, userDetails } = useAuth();
 
 	return (
 		<header>
@@ -36,42 +37,17 @@ const Header = () => {
 									HOME
 								</Link>
 							</li>
-							<li className="nav-item">
-								<Link
-									className="nav-link active text-white"
-									aria-current="page"
-									to="/appointments"
-								>
-									FACILITIES
-								</Link>
-							</li>
-
-							{user && (
-								<li className="nav-item">
-									<Link
-										className="nav-link active text-white"
-										to="registercompany"
-									>
-										BOOK NOW
-									</Link>
-								</li>
-							)}
-
-							<li className="nav-item">
-								<Link className="nav-link active text-white" to="/notices">
-									NOTICES
-								</Link>
-							</li>
 						</ul>
 						<div className="d-flex">
 							<ul className="navbar-nav me-auto mb-2 mb-lg-0 text-white">
-								{user && (
+								{isLoggedIn && (
 									<>
+										<p>{userDetails?.userName}</p>
 										<li className="nav-item">
 											<Link
 												className="nav-link active text-white me-2"
 												aria-current="page"
-												to="/admin/feedbacks"
+												to="/admin"
 											>
 												Dashboard
 											</Link>
@@ -87,7 +63,7 @@ const Header = () => {
 									</>
 								)}
 
-								{!user && (
+								{!isLoggedIn && (
 									<>
 										{" "}
 										<li className="nav-item">

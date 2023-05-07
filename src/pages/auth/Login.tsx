@@ -1,16 +1,15 @@
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-import { constants } from "utils/constants";
 import useAuth from "shared/hooks/components/auth/useAuth";
+import { constants } from "utils/constants";
 
 type Inputs = {
-	email: string;
 	userName: string;
 	password: string;
 };
 
-const Register = () => {
+const Login = () => {
 	const navigate = useNavigate();
 
 	const {
@@ -20,37 +19,15 @@ const Register = () => {
 		formState: { errors },
 	} = useForm<Inputs>();
 
-	const { signup } = useAuth();
+	const { login } = useAuth();
 
-	const onSubmit: SubmitHandler<Inputs> = (data) => signup(data);
+	const onSubmit: SubmitHandler<Inputs> = (data) => login(data);
 
 	return (
 		<div className="container py-5">
 			<div className="row">
 				<div className="col-lg-5 mx-auto">
 					<form onSubmit={handleSubmit(onSubmit)}>
-						<div className="mb-3">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Email address
-							</label>
-							<input
-								type="email"
-								className="form-control"
-								id="exampleInputEmail1"
-								aria-describedby="emailHelp"
-								{...register("email", {
-									required: {
-										value: true,
-										message: "Email is required",
-									},
-									pattern: {
-										value: constants.REGEX_PATTERNS?.EMAIL_REGEX,
-										message: "Entered email does not match email format",
-									},
-								})}
-							/>
-							{errors.email && <span role="alert">{errors.email.message}</span>}
-						</div>
 						<div className="mb-3">
 							<label htmlFor="userName1" className="form-label">
 								User name
@@ -66,8 +43,11 @@ const Register = () => {
 										message: "User name is required",
 									},
 									pattern: {
-										value: constants.REGEX_PATTERNS?.USERNAME_REGEX,
-										message: "Entered user name does not match format",
+										value: new RegExp(
+											`(${constants.REGEX_PATTERNS?.EMAIL_REGEX.source})|(${constants.REGEX_PATTERNS?.USERNAME_REGEX.source})`
+										),
+										message:
+											"The entered value does not match a valid user name or email format",
 									},
 								})}
 							/>
@@ -97,11 +77,11 @@ const Register = () => {
 							{errors.password && <span>{errors?.password?.message}</span>}
 						</div>
 						<button type="submit" className="btn btn-primary">
-							Register
+							Login
 						</button>
 
-						<a className="link ms-2" onClick={() => navigate("/login")}>
-							Have an account ? Login
+						<a className="link ms-2" onClick={() => navigate("/register")}>
+							Don't have an account ? Register
 						</a>
 					</form>
 				</div>
@@ -110,4 +90,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default Login;

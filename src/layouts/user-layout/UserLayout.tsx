@@ -1,29 +1,13 @@
-import React, { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import UserRoutes from "routes/user.routes";
 import Header from "./components/Header";
-import { RouteType } from "@models/Route.model";
+import useRouteGenerator from "shared/hooks/useRouteGenerator";
 
 const UserLayout = () => {
-	const getRoutes = (routes: RouteType[]) => {
-		return routes.map((prop, key) => {
-			const Element = prop?.component;
-			return (
-				<Route
-					path={prop.path}
-					element={
-						prop?.redirectTo ? (
-							<Navigate to={prop?.redirectTo} />
-						) : Element ? (
-							<Element />
-						) : null
-					}
-					key={key}
-				/>
-			);
-		});
-	};
+	const location = useLocation();
+
+	const { getRoutes } = useRouteGenerator();
 
 	return (
 		<div className="container-fluid">
@@ -31,7 +15,7 @@ const UserLayout = () => {
 
 			<div className="mt-5">
 				<Routes>
-					{getRoutes(UserRoutes)}
+					{getRoutes(UserRoutes, location?.pathname)}
 					<Route path="*" element={<Navigate to="/notices" replace />} />
 				</Routes>
 			</div>

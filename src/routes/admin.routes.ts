@@ -3,6 +3,10 @@ import Dashboard from "@pages/admin/dashboard"
 
 const routes = [
     {
+        path: "/",
+        redirectTo: "/dashboard"
+    },
+    {
         path: "/dashboard",
         component: Dashboard
     },

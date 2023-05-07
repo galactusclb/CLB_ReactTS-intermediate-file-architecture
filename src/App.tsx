@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AdminLayout from "./layouts/admin-layout/AdminLayout";
@@ -10,8 +9,8 @@ function App() {
 		<div className="container-fuild">
 			<BrowserRouter>
 				<Routes>
-					<Route path="/*" element={<UserLayout />} />
 					<Route path="/admin/*" element={<AdminLayout />} />
+					<Route path="/*" element={<UserLayout />} />
 					{/* <Route path="*" element={<NotFound />} /> */}
 				</Routes>
 			</BrowserRouter>
