@@ -45,9 +45,14 @@ const useAuth = () => {
 		navigate(navigateTo, { replace: true });
 	};
 
+	const logout = async () => {
+		dispatch(authActions.logout());
+	};
+
 	return {
 		login,
 		signup,
+		logout,
 		isLoggedIn,
 		userDetails,
 	};

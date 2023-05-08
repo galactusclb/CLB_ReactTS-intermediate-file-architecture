@@ -28,3 +28,13 @@ export const doLogin = async (payload: {
             return buildResponse(false, err.response?.data, err.response?.status)
         })
 }
+
+export const doLogout = async () => {
+    return await getApi().post("/auth/logout")
+        .then((res: AxiosResponse) => {
+            return buildResponse(true, res.data)
+        })
+        .catch((err: AxiosError) => {
+            return buildResponse(false, err.response?.data, err.response?.status)
+        })
+}

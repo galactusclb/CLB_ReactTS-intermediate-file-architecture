@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useAuth from "shared/hooks/components/auth/useAuth";
 
 const Header = () => {
-	const { isLoggedIn, userDetails } = useAuth();
+	const { isLoggedIn, userDetails, logout } = useAuth();
 
 	return (
 		<header>
@@ -55,7 +55,7 @@ const Header = () => {
 										<li className="nav-item">
 											<button
 												className="btn btn-warning text-white"
-												onClick={() => {}}
+												onClick={logout}
 											>
 												Logout
 											</button>
