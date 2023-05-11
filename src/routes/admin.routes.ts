@@ -1,19 +1,22 @@
+import { RouteType } from "@models/Route.model"
 import { NotFound } from "@pages/NotFound"
-import Dashboard from "@pages/admin/dashboard"
+import Dashboard from "@pages/admin/Dashboard"
+import ProductList from "@pages/admin/products/ProductList"
 
-const routes = [
+const routes: RouteType[] = [
     {
         path: "/",
         redirectTo: "/dashboard"
     },
     {
         path: "/dashboard",
-        component: Dashboard
+        component: Dashboard,
+        roles: ["admin", "editor"]
     },
-    // {
-    //     path: "/feedbacks",
-    //     component: <FeedbackList />
-    // },
+    {
+        path: "/products",
+        component: ProductList
+    },
     // {
     //     path: "/feedbacks/:id",
     //     component: <FeedbackView />
